@@ -1,0 +1,31 @@
+// Point Netlist Generated on: Jun 15 15:13:39 2026
+// Generated for: spectre
+// Design Netlist Generated on: Jun 15 15:13:39 2026
+// Design library name: Test_FinFET
+// Design cell name: NMOS_L18nm_PTM__Sqrt_Id_wrt_Vgs
+// Design view name: schematic
+simulator lang=spectre
+global 0
+parameters temperature=27 Vds=0.45 Vgs=0.4
+include "/home/avulpe_research/Desktop/FinFET/models.unknown" section=ptm14lstp
+
+// Library name: Test_FinFET
+// Cell name: NMOS_L18nm_PTM__Sqrt_Id_wrt_Vgs
+// View name: schematic
+V1 (Vds 0) vsource dc=Vds type=dc
+V0 (Vgs 0) vsource dc=Vgs type=dc
+M0 (Vds Vgs 0 0) nfet
+simulatorOptions options psfversion="1.4.0" reltol=1e-3 vabstol=1e-6 \
+    iabstol=1e-12 temp=27 tnom=27 scalem=1.0 scale=1.0 gmin=1e-12 rforce=1 \
+    redefinedparams=warning maxnotes=5 maxwarns=5 digits=5 cols=80 \
+    pivrel=1e-3 sensfile="../psf/sens.output" checklimitdest=psf 
+dc dc param=Vgs start=0 stop=0.8 write="spectre.dc" oppoint=rawfile \
+    maxiters=150 maxsteps=10000 annotate=status 
+modelParameter info what=models where=rawfile
+element info what=inst where=rawfile
+outputParameter info what=output where=rawfile
+designParamVals info what=parameters where=rawfile
+primitives info what=primitives where=rawfile
+subckts info what=subckts where=rawfile
+save Vgs M0:d 
+//saveOptions options save=allpub

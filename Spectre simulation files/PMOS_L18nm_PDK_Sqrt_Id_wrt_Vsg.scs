@@ -1,0 +1,34 @@
+// Point Netlist Generated on: Jun 15 16:09:05 2026
+// Generated for: spectre
+// Design Netlist Generated on: Jun 15 16:09:05 2026
+// Design library name: Test_FinFET
+// Design cell name: PMOS_L18nm_PDK_Sqrt_Id_wrt_Vsg
+// Design view name: schematic
+simulator lang=spectre
+global 0
+parameters temperature=27 Vsd=0.45 Vsg=0.4
+include "/opt/designKits/research/04_FinFET_Cadence/cds_ff_mpt_v_1.1/cds_ff_mpt/../models/spectre/cds_ff_mpt.scs" section=tt
+
+// Library name: Test_FinFET
+// Cell name: PMOS_L18nm_PDK_Sqrt_Id_wrt_Vsg
+// View name: schematic
+V8 (Vsd net3) vsource dc=Vsg type=dc
+V3 (Vsd 0) vsource dc=Vsd type=dc
+PM0 (0 net3 Vsd Vsd) cds_ff_mpt_p1hvt l=18.0n nfin=1 nf=1 m=1 ngcon=1 \
+        asej=4.128e-15 adej=4.128e-15 psej=2.2e-07 pdej=2.2e-07 lrsd=86.0n
+simulatorOptions options psfversion="1.4.0" reltol=1e-3 vabstol=1e-6 \
+    iabstol=1e-12 temp=27 tnom=27 scalem=1.0 scale=1.0 gmin=1e-12 rforce=1 \
+    maxnotes=5 maxwarns=5 digits=5 cols=80 pivrel=1e-3 \
+    sensfile="../psf/sens.output" checklimitdest=psf 
+dcOp dc write="spectre.dc" maxiters=150 maxsteps=10000 annotate=status
+dcOpInfo info what=oppoint where=rawfile
+dc dc param=Vsg start=0 stop=0.8 oppoint=rawfile maxiters=150 \
+    maxsteps=10000 annotate=status
+modelParameter info what=models where=rawfile
+element info what=inst where=rawfile
+outputParameter info what=output where=rawfile
+designParamVals info what=parameters where=rawfile
+primitives info what=primitives where=rawfile
+subckts info what=subckts where=rawfile
+save Vsg PM0:s 
+// saveOptions options save=all pwr=all currents=all saveahdlvars=all
